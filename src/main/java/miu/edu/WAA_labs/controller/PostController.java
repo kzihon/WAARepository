@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/posts")
+@RequestMapping("/posts")
 public class PostController {
     @Autowired
     private PostService postService;
@@ -30,15 +30,15 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody PostDto postDto){
-        postService.save(postDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<PostDto> save(@RequestBody PostDto postDto){
+
+        return new ResponseEntity<>(postService.save(postDto),HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody PostDto postDto){
-        postService.update(id, postDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<PostDto> update(@PathVariable("id") long id, @RequestBody PostDto postDto){
+
+        return new ResponseEntity<>( postService.update(id, postDto),HttpStatus.OK);
 
     }
     @DeleteMapping("/{id}")

@@ -29,21 +29,25 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto findById(Long id) {
-        return modelMapper.map(postRepo.findById(id), PostDto.class);
+        return modelMapper.map(postRepo.findById(id).get(), PostDto.class);
     }
 
     @Override
-    public void save(PostDto postDto) {
-        postRepo.save(modelMapper.map(postDto, Post.class));
+    public PostDto save(PostDto postDto) {
+        return modelMapper.map(postRepo.save(modelMapper.map(postDto, Post.class)),PostDto.class);
     }
 
     @Override
-    public void update(long id, PostDto postDto) {
-        postRepo.update(id, modelMapper.map(postDto, Post.class));
+    public PostDto update(long id, PostDto postDto) {
+        Post post = postRepo.findById(id).get();
+        post=modelMapper.map(postDto, Post.class);
+        post.setId(id);
+       return modelMapper.map(postRepo.save(post),PostDto.class);
+       // postRepo.update(id, modelMapper.map(postDto, Post.class));
     }
 
     @Override
     public void delete(long id) {
-        postRepo.delete(id);
+        postRepo.deleteById(id);
     }
 }

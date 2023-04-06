@@ -1,24 +1,26 @@
 package miu.edu.WAA_labs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-public class Post {
+@Table(name ="User_entity")
+public class User {
     @Id
     @GeneratedValue
-    private long id;
-    private String title;
-    private String content;
-    private String author;
+    long id;
+    String name;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name= "user_id")
+    List<Post> posts;
 
 }

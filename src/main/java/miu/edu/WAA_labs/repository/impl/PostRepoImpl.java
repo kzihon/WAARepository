@@ -10,8 +10,8 @@ import java.util.List;
 
 
 
-@Repository
-public class PostRepoImpl implements PostRepo {
+//@Repository
+public class PostRepoImpl {//implements PostRepo {
     private static List<Post> posts;
     private static int postId = 300;
     static {
@@ -26,39 +26,39 @@ public class PostRepoImpl implements PostRepo {
     }
 
 
-    @Override
-    public List<Post> findAll() {
-        return posts;
-    }
-
-    @Override
-    public Post findById(Long id) {
-        return posts.stream().filter(x->x.getId()==id).findFirst().orElse(null);
-    }
-
-    @Override
-    public void save(Post post) {
-        post.setId(postId);
-        postId++;
-        posts.add(post);
-    }
-
-    @Override
-    public void update(long id, Post post) {
-        Post toUpdate = findById(id);
-        toUpdate.setTitle(post.getTitle());
-        toUpdate.setAuthor(post.getAuthor());
-        toUpdate.setContent(post.getContent());
-
-        posts.set((int)id, toUpdate);
-
-
-
-    }
-
-    @Override
-    public void delete(long id) {
-        Post post = posts.stream().filter(i->i.getId()==id).findFirst().get();
-        posts.remove(post);
-    }
+//    @Override
+//    public List<Post> findAll() {
+//        return posts;
+//    }
+//
+//    @Override
+//    public Post findById(Long id) {
+//        return posts.stream().filter(x->x.getId()==id).findFirst().orElse(null);
+//    }
+//
+//    @Override
+//    public void save(Post post) {
+//        post.setId(postId);
+//        postId++;
+//        posts.add(post);
+//    }
+//
+//    @Override
+//    public void update(long id, Post post) {
+//        Post toUpdate = findById(id);
+//        toUpdate.setTitle(post.getTitle());
+//        toUpdate.setAuthor(post.getAuthor());
+//        toUpdate.setContent(post.getContent());
+//
+//        posts.set((int)id, toUpdate);
+//
+//
+//
+//    }
+//
+//    @Override
+//    public void delete(long id) {
+//        Post post = posts.stream().filter(i->i.getId()==id).findFirst().get();
+//        posts.remove(post);
+//    }
 }
