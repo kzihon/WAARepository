@@ -1,6 +1,7 @@
 package miu.edu.WAA_labs.service;
 
 import miu.edu.WAA_labs.dtos.PostDto;
+import miu.edu.WAA_labs.entity.Comment;
 import miu.edu.WAA_labs.entity.Post;
 import miu.edu.WAA_labs.entity.User;
 
@@ -14,4 +15,6 @@ public interface UserService {
     void delete(long id);
     List<PostDto> findPostsForUser(long id);
     List<User> userWithMoreThankOnePost();
+
+    Comment getUserForAParticularPostAndParticularCommnent(long user_id,long post_id,long comment_id);
 }

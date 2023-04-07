@@ -1,5 +1,6 @@
 package miu.edu.WAA_labs.controller;
 
+import miu.edu.WAA_labs.entity.Comment;
 import miu.edu.WAA_labs.entity.User;
 import miu.edu.WAA_labs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,16 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping("{user_id}/posts/{post_id}/comments/{comment_id}")
+    public ResponseEntity<Comment> getUserForAParticularPostAndParticularCommnent(
+            @PathVariable("user_id") long user_id,
+            @PathVariable("post_id") long post_id,
+            @PathVariable("comment_id") long comment_id
+    ){
+        return new ResponseEntity<>(userService.getUserForAParticularPostAndParticularCommnent(user_id,post_id,comment_id), HttpStatus.OK);
+    }
+
+
     @GetMapping
     public ResponseEntity<Users> getAllUsers(){
         Users users = new Users();
@@ -35,8 +46,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
         System.out.println(user);
-        System.out.println(userService.save(user));
-        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+        User user1 = userService.save(user);
+        return new ResponseEntity<>(user1, HttpStatus.CREATED);
     }
     @GetMapping("/{id}/posts")
     public ResponseEntity<PostsDto> postsForUser(@PathVariable("id") long id){

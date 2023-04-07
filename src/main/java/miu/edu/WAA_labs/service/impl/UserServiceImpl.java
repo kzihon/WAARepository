@@ -1,6 +1,7 @@
 package miu.edu.WAA_labs.service.impl;
 
 import miu.edu.WAA_labs.dtos.PostDto;
+import miu.edu.WAA_labs.entity.Comment;
 import miu.edu.WAA_labs.entity.Post;
 import miu.edu.WAA_labs.entity.User;
 import miu.edu.WAA_labs.repository.PostRepo;
@@ -55,5 +56,16 @@ public class UserServiceImpl implements UserService {
     }
     public List<User> userWithMoreThankOnePost(){
         return userRepo.userWithMoreThankOnePost();
+    }
+
+    @Override
+    public Comment getUserForAParticularPostAndParticularCommnent(long user_id, long post_id, long comment_id) {
+//        User user = userRepo.findById(user_id).get();
+//        Post post=user.getPosts().stream().filter(p->p.getId()==post_id).findFirst().get();
+//        Comment comment=post.getComments().stream().filter(comment1 -> comment1.getId()==comment_id).findFirst().get();
+
+
+
+        return userRepo.getUserForAParticularPostAndParticularCommnent(user_id, post_id, comment_id);
     }
 }

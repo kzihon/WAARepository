@@ -12,18 +12,18 @@ import java.util.List;
 
 //@Repository
 public class PostRepoImpl {//implements PostRepo {
-    private static List<Post> posts;
-    private static int postId = 300;
-    static {
-        posts = new ArrayList<>();
-        Post post1 = new Post(1,"Blog1","Environment","Jack");
-        Post post2 = new Post(2,"Blog2", "Social", "Bob");
-        Post post3 = new Post(3,"Blog3", "Natural", "Kate");
-
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
-    }
+//    private static List<Post> posts;
+//    private static int postId = 300;
+//    static {
+//        posts = new ArrayList<>();
+//        Post post1 = new Post(1,"Blog1","Environment","Jack");
+//        Post post2 = new Post(2,"Blog2", "Social", "Bob");
+//        Post post3 = new Post(3,"Blog3", "Natural", "Kate");
+//
+//        posts.add(post1);
+//        posts.add(post2);
+//        posts.add(post3);
+//    }
 
 
 //    @Override

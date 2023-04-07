@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import miu.edu.WAA_labs.entity.Comment;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,4 +17,5 @@ public class PostDto {
     private String title;
     private String content;
     private String author;
+    private List<Comment> comments;
 }

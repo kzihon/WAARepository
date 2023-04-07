@@ -1,12 +1,14 @@
 package miu.edu.WAA_labs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -15,10 +17,18 @@ import lombok.ToString;
 @Entity
 public class Post {
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String content;
     private String author;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments;
+
+    public void setComment(Comment comment){
+        comments.add(comment);
+    }
+
 
 }
