@@ -1,6 +1,8 @@
 package miu.edu.WAA_labs.controller;
 
+import miu.edu.WAA_labs.aop.ExecutionTime;
 import miu.edu.WAA_labs.entity.Comment;
+import miu.edu.WAA_labs.entity.MyException;
 import miu.edu.WAA_labs.entity.User;
 import miu.edu.WAA_labs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
+    @ExecutionTime
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") long id){
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
@@ -30,10 +35,13 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<Users> getAllUsers(){
-        Users users = new Users();
-        users.setUsers(userService.findAll());
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<Users> getAllUsers() throws Exception{
+        throw new MyException("myexception");
+
+
+//        Users users = new Users();
+//        users.setUsers(userService.findAll());
+//        return new ResponseEntity<>(users, HttpStatus.OK);
     }
     @GetMapping("/posts")
     public ResponseEntity<Users> userWithMoreThankOnePost(){

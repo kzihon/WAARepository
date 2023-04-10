@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(name ="Post_entity")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +23,19 @@ public class Post {
     private String title;
     private String content;
     private String author;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
-    private List<Comment> comments;
+   // @ManyToOne
+//    @JoinTable(name = "Post_User",
+//            joinColumns={@JoinColumn(name = "Post_id")},
+//            inverseJoinColumns={@JoinColumn(name = "User_id")}
+//    )
+   // private User user;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "post_id")
+//    private List<Comment> comments;
 
-    public void setComment(Comment comment){
-        comments.add(comment);
-    }
+//    public void setComment(Comment comment){
+//        comments.add(comment);
+//    }
 
 
 }

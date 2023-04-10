@@ -19,8 +19,8 @@ public class User {
     long id;
     String name;
 
-    @OneToMany(cascade = {CascadeType.ALL ,CascadeType.REMOVE})
-    @JoinColumn(name= "user_id")
+    @OneToMany(cascade = CascadeType.ALL)//, mappedBy = "user")
+//    @JoinColumn(name= "user_id")
     List<Post> posts;
 
 }
