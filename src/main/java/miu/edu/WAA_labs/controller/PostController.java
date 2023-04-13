@@ -1,6 +1,7 @@
 package miu.edu.WAA_labs.controller;
 
 import miu.edu.WAA_labs.dtos.PostDto;
+import miu.edu.WAA_labs.repository.UserRepo;
 import miu.edu.WAA_labs.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostService postService;
+
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping

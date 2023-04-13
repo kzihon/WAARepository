@@ -59,13 +59,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserWithPosts(int num) {
+        return null;
+    }
+
+    @Override
     public Comment getUserForAParticularPostAndParticularCommnent(long user_id, long post_id, long comment_id) {
-//        User user = userRepo.findById(user_id).get();
-//        Post post=user.getPosts().stream().filter(p->p.getId()==post_id).findFirst().get();
-//        Comment comment=post.getComments().stream().filter(comment1 -> comment1.getId()==comment_id).findFirst().get();
+        User user = userRepo.findById(user_id).get();
+        Post post=user.getPosts().stream().filter(p->p.getId()==post_id).findFirst().get();
+        Comment comment=post.getComments().stream().filter(comment1 -> comment1.getId()==comment_id).findFirst().get();
 
+        return comment;
 
-
-        return userRepo.getUserForAParticularPostAndParticularCommnent(user_id, post_id, comment_id);
+        //return userRepo.getUserForAParticularPostAndParticularCommnent(user_id, post_id, comment_id);
     }
 }

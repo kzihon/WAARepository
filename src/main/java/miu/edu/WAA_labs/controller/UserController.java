@@ -3,7 +3,9 @@ package miu.edu.WAA_labs.controller;
 import miu.edu.WAA_labs.aop.ExecutionTime;
 import miu.edu.WAA_labs.entity.Comment;
 import miu.edu.WAA_labs.entity.MyException;
+import miu.edu.WAA_labs.entity.Post;
 import miu.edu.WAA_labs.entity.User;
+import miu.edu.WAA_labs.repository.UserRepo;
 import miu.edu.WAA_labs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserRepo userRepo;
     @ExecutionTime
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") long id){
@@ -35,13 +38,11 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<Users> getAllUsers() throws Exception{
-        throw new MyException("myexception");
-
-
-//        Users users = new Users();
-//        users.setUsers(userService.findAll());
-//        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<Users> getAllUsers() {//throws Exception{
+      //  throw new MyException("myexception");
+        Users users = new Users();
+        users.setUsers(userService.findAll());
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
     @GetMapping("/posts")
     public ResponseEntity<Users> userWithMoreThankOnePost(){
@@ -57,11 +58,21 @@ public class UserController {
         User user1 = userService.save(user);
         return new ResponseEntity<>(user1, HttpStatus.CREATED);
     }
+//    @GetMapping("/{id}/posts")
+//    public ResponseEntity<PostsDto> postsForUser(@PathVariable("id") long id){
+//       PostsDto postsDto = new PostsDto();
+//       postsDto.setPostsDtos(userService.findPostsForUser(id));
+//        return new ResponseEntity<>(postsDto, HttpStatus.OK);
+//    }
     @GetMapping("/{id}/posts")
-    public ResponseEntity<PostsDto> postsForUser(@PathVariable("id") long id){
-       PostsDto postsDto = new PostsDto();
-       postsDto.setPostsDtos(userService.findPostsForUser(id));
-        return new ResponseEntity<>(postsDto, HttpStatus.OK);
+    public List<Post> postsForUser(@PathVariable("id") long id){
+
+        return userRepo.findPostsForUserId(id);
+    }
+    @GetMapping("/filters/posts/{num}")
+    public List<User> findUserWithPosts(@PathVariable int num) {
+        return userRepo.findUserWithPosts(num);
+
     }
 
 }

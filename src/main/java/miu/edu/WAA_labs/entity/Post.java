@@ -29,9 +29,9 @@ public class Post {
 //            inverseJoinColumns={@JoinColumn(name = "User_id")}
 //    )
    // private User user;
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "post_id")
-//    private List<Comment> comments;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments;
 
 //    public void setComment(Comment comment){
 //        comments.add(comment);
